@@ -36,6 +36,7 @@
 </template>
 
 <script>
+emits: ["save-data"];
 export default {
   data() {
     return {
@@ -49,14 +50,14 @@ export default {
 
   methods: {
     submitForm() {
-      const formDate = {
+      const formData = {
         first: this.firstName,
         last: this.lastName,
         rate: this.rate,
         desc: this.desc,
         areas: this.areas,
       };
-      console.log(formDate);
+      this.$emit("save-data", formData);
     },
   },
 };
