@@ -4,10 +4,11 @@ import App from "./App.vue";
 import store from "./store";
 import BaseCardVue from "./pages/ui/BaseCard.vue";
 import BaseButtonVue from "./pages/ui/BaseButton.vue";
-
+import BaseBadge from "./pages/ui/BaseBadge.vue";
 const app = createApp(App);
 app.use(router);
 app.use(store);
 app.component("base-card", BaseCardVue);
 app.component("base-button", BaseButtonVue);
+app.component("base-badge", BaseBadge);
 app.mount("#app");

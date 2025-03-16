@@ -1,1 +1,1 @@
-<template>dummy</template>
+<template>this not found page</template>
