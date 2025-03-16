@@ -8,14 +8,18 @@
       </span>
     </div>
     <div class="actions">
-      <router-link :to="contactCoachLink">Contact Coach</router-link>
-      <router-link :to="detailsCoachLink"> View Details</router-link>
+      <base-button mode="outline" link :to="contactCoachLink"
+        >Contact Coach</base-button
+      >
+      <base-button link :to="detailsCoachLink"> View Details</base-button>
     </div>
   </li>
 </template>
 
 <script>
+import BaseButton from "@/pages/ui/BaseButton.vue";
 export default {
+  components: { BaseButton },
   props: ["id", "firstName", "lastName", "rate", "areas"],
   computed: {
     fullName() {
@@ -25,7 +29,7 @@ export default {
       return this.$route.path + "/" + this.id + "/" + "contact";
     },
     detailsCoachLink() {
-      return this.$route.params + "/" + this.id;
+      return this.$route.path + "/" + this.id;
     },
   },
 };
