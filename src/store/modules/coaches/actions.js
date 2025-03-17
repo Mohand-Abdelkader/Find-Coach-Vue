@@ -29,7 +29,10 @@ export default {
     });
   },
 
-  async loadCoaches(context) {
+  async loadCoaches(context, payload) {
+    if (!payload.forceRefresh && !context.getters.shouldUpdate) {
+      return;
+    }
     const response = await fetch(
       `https://find-coach-vue-9b64c-default-rtdb.firebaseio.com/coahces.json`
     );
@@ -43,6 +46,7 @@ export default {
     const coaches = [];
     for (const key in data) {
       const coach = {
+        id: key,
         firstName: data[key].firstName,
         lastName: data[key].lastName,
         description: data[key].desc,
@@ -53,5 +57,6 @@ export default {
     }
 
     context.commit("setCoaches", coaches);
+    context.commit("setLastFetch");
   },
 };
