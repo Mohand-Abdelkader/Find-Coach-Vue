@@ -16,7 +16,12 @@
   </section>
   <section>
     <base-card>
-      <base-badge v-for="area in areas" :title="area" :type="area"></base-badge>
+      <base-badge
+        v-for="area in areas"
+        :title="area"
+        :type="area"
+        :key="area"
+      ></base-badge>
       <p>{{ desc }}</p>
     </base-card>
   </section>

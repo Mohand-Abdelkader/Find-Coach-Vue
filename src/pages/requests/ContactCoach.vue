@@ -27,6 +27,7 @@ export default {
   },
   methods: {
     submitForm() {
+      console.log("how many");
       this.formIsValid = true;
       if (this.message == "" || !this.email.includes("@") || this.email == "") {
         this.formIsValid = false;
@@ -37,7 +38,7 @@ export default {
         message: this.message,
         coachId: this.$route.params.id,
       });
-      this.router.replace("/coaches");
+      this.$router.replace("/coaches");
     },
   },
 };
