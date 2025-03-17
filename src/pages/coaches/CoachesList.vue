@@ -1,4 +1,7 @@
 <template>
+  <base-dialog :show="!!error" title="An error occurred!" @close="handelError">
+    <p>{{ error }}</p>
+  </base-dialog>
   <coach-filter @change-filter="setFilter"></coach-filter>
   <section>
     <base-card>
@@ -8,7 +11,10 @@
           >Register as Coach</base-button
         >
       </div>
-      <ul v-if="hasCoaches">
+      <div v-if="isLoading">
+        <base-spinner></base-spinner>
+      </div>
+      <ul v-else-if="hasCoaches && !isLoading">
         <coach-item
           v-for="coach in filterCoaches"
           :key="coach.id"
@@ -29,10 +35,21 @@ import CoachItem from "../components/coaches/CoachItem.vue";
 import BaseButton from "../ui/BaseButton.vue";
 import BaseCard from "../ui/BaseCard.vue";
 import CoachFilter from "../components/coaches/CoachFilter.vue";
+import BaseSpinner from "../ui/BaseSpinner.vue";
+import BaseDialog from "../ui/BaseDialog.vue";
 export default {
-  components: { CoachItem, BaseCard, BaseButton, CoachFilter },
+  components: {
+    CoachItem,
+    BaseCard,
+    BaseButton,
+    CoachFilter,
+    BaseSpinner,
+    BaseDialog,
+  },
   data() {
     return {
+      isLoading: false,
+      error: null,
       activeFilter: {
         frontend: true,
         backend: true,
@@ -64,11 +81,20 @@ export default {
     this.loadData();
   },
   methods: {
+    handelError() {
+      this.error = null;
+    },
     setFilter(updateFilter) {
       this.activeFilter = updateFilter;
     },
-    loadData() {
-      this.$store.dispatch("coaches/loadCoaches");
+    async loadData() {
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch("coaches/loadCoaches");
+      } catch (error) {
+        this.error = error.message || "something went wrong";
+      }
+      this.isLoading = false;
     },
   },
 };

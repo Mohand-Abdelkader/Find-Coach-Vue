@@ -33,11 +33,13 @@ export default {
     const response = await fetch(
       `https://find-coach-vue-9b64c-default-rtdb.firebaseio.com/coahces.json`
     );
+    const data = await response.json();
 
     if (!response.ok) {
       //error handel
+      const error = new Error(data.message || "failed to fetch!");
+      throw error;
     }
-    const data = await response.json();
     const coaches = [];
     for (const key in data) {
       const coach = {
