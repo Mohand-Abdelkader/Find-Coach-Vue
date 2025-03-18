@@ -26,9 +26,9 @@ export default {
 
   async fetchRequest(context) {
     const coachId = context.rootGetters.userId;
-
+    const token = context.rootGetters.token;
     const response = await fetch(
-      `https://find-coach-vue-9b64c-default-rtdb.firebaseio.com/requests/${coachId}.json`
+      `https://find-coach-vue-9b64c-default-rtdb.firebaseio.com/requests/${coachId}.json?auth=${token}`
     );
     if (!response.ok) {
       const error = new Error(data.message || "failed to fetch!");

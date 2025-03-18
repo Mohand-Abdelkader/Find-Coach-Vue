@@ -1,4 +1,10 @@
 <template>
+  <base-dialog :show="!!error" title="an Error occurred" @close="handleClose">
+    <p>{{ error }}</p>
+  </base-dialog>
+  <base-dialog :show="isLoading" title="Authenticating">
+    <base-spinner></base-spinner>
+  </base-dialog>
   <base-card>
     <form @submit.prevent="submitForm">
       <div class="form-control">
@@ -19,6 +25,8 @@
 </template>
 
 <script>
+import BaseDialog from "../ui/BaseDialog.vue";
+import BaseSpinner from "../ui/BaseSpinner.vue";
 export default {
   data() {
     return {
@@ -26,6 +34,8 @@ export default {
       password: "",
       formIsValid: true,
       mode: "login",
+      error: null,
+      isLoading: false,
     };
   },
   computed: {
@@ -45,7 +55,7 @@ export default {
     },
   },
   methods: {
-    submitForm() {
+    async submitForm() {
       this.formIsValid = true;
       if (
         this.email === "" ||
@@ -55,15 +65,27 @@ export default {
         this.formIsValid = false;
         return;
       }
-
-      if (this.mode == "login") {
-        //login
-      } else {
-        this.$store.dispatch("signup", {
-          email: this.email,
-          password: this.password,
-        });
+      this.isLoading = true;
+      try {
+        if (this.mode == "login") {
+          //login
+          await this.$store.dispatch("login", {
+            email: this.email,
+            password: this.password,
+          });
+        } else {
+          await this.$store.dispatch("signup", {
+            email: this.email,
+            password: this.password,
+          });
+        }
+      } catch (err) {
+        this.error = err.message;
       }
+      this.isLoading = false;
+    },
+    handleClose() {
+      this.error = null;
     },
     switchAuthMode() {
       if (this.mode === "login") {
