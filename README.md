@@ -24,4 +24,39 @@ Users can browse available coaches, view detailed profiles, register as a coach,
 
 ## ⚙️ How It Works
 
-- **🏠 Home Page**
+- **🏠 Home Page**  
+  Displays a searchable list of coaches. Users can search by name, specialty, or location.
+
+- **👤 Coach Profiles**  
+  Includes name, image, location, areas of expertise, and pricing details.
+
+- **🔐 Login & Sign-Up**  
+  Users can register and log in to save favorites and access profile features.
+
+- **📨 Messaging System**  
+  Users can contact coaches directly via a form on each coach's profile page.
+
+- **📊 Admin Dashboard (for Coaches)**  
+  Authenticated coaches can:
+  - Manage their profiles (specialties, availability, pricing)
+  - View and respond to messages from users
+
+---
+
+## 💡 Features
+
+1. **User Authentication** – Secure login and registration
+2. **Coach Search** – Filter by specialty, availability, or price
+3. **Dynamic Coach Profiles** – Showcases each coach’s skills and info
+4. **Vuex Store** – Centralized state management for efficient data sharing
+5. **Store Modularization** – Organized into modules for scalability
+6. **Dynamic Routing** – Route params for profile pages, admin areas
+7. **Lazy Loading** – Components and routes load only when needed
+8. **Navigation Guards** – Secure routes with role-based access
+
+---
+
+## 📚 Acknowledgements
+
+This project was built as part of the course:  
+**[Vue - The Complete Guide (incl. Router & Composition API)](https://www.udemy.com/course/vuejs-2-the-complete-guide/)** by **Maximilian Schwarzmüller**.
