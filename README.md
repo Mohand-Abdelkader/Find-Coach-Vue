@@ -1,29 +1,27 @@
-# vue-project
+# 🎯 Find a Coach – Vue.js Application
 
-This template should help get you started developing with Vue 3 in Vite.
+**Find a Coach** is a full-featured web application built with Vue.js that enables users to find and connect with expert coaches specializing in frontend, backend, and career development.
 
-## Recommended IDE Setup
+This project showcases key Vue.js ecosystem features such as Vue Router, Vuex, the Composition API, and more. Developed as part of the **"Vue - The Complete Guide"** course by Maximilian Schwarzmüller, it demonstrates practical skills in creating production-ready Vue applications.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+---
 
-## Customize configuration
+## 🚀 Project Description
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+Users can browse available coaches, view detailed profiles, register as a coach, and interact via a secure messaging system. Authenticated users can manage their profiles, filter coaches by specialty or pricing, and access personalized features.
 
-## Project Setup
+---
 
-```sh
-npm install
-```
+## 🛠️ Tech Stack and Libraries
 
-### Compile and Hot-Reload for Development
+- **Vue.js** – Progressive JavaScript framework for building UIs  
+- **Vue Router** – Declarative routing system  
+- **Vuex** – Centralized state management  
+- **Axios** – HTTP client for API communication  
+- **Node.js + Express + MongoDB (Backend)** – For data storage and API (explained in the "How It Works" section)
 
-```sh
-npm run dev
-```
+---
 
-### Compile and Minify for Production
+## ⚙️ How It Works
 
-```sh
-npm run build
-```
+- **🏠 Home Page**
